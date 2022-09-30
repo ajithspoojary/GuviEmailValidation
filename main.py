@@ -86,7 +86,7 @@ def login():
             print("*************************************")
         else:
             print("*************************************")
-            print("Incorrect Password\nPress 1 to retrieve your password\nPress 2 to Change Password\nPress 3 to Register has New User\nPress 4 to exit\n*************************************\n")
+            print("INCORRECT PASSWORD\n\n\nPress 1 to retrieve your password\nPress 2 to Change Password\nPress 3 to Register has New User\nPress 4 to exit\n*************************************\n")
             p = input()
             if p == "1":
                 b = input("Enter your valid Email id\n")
@@ -98,23 +98,28 @@ def login():
                 b = input("Enter your valid Email id\n")
                 print(data)
                 if b in data:
-                    db_w = open("temp.txt","w")
+                    print(b)
+                    print("-----")
+                    print(data)
+                    db = open("custdata.txt", "r")
+                    db_w = open("temp.txt", "w")
                     s1 = ' '
-                    while s1:
-                        s1 = db.readline()  #read the first line
+                    while (s1):
+                        s1 = db.readline()  # read the first line
+                        print(s1)
                         l1 = s1.split("~~~")
                         print(s1)
-                        print(l1)
-                        if len(s1)>0:
+                        print(l1[0])
+                        if len(s1) > 0:
                             if l1[0] == b:
                                 newpass = input("Enter your new password")
-                                db_w.write(b+", "+newpass+"\n")
+                                db_w.write(b + "~~~" + newpass + "\n")
                             else:
                                 db_w.write(s1)
                     db_w.close()
                     db.close()
-                    #os.remove("custdata.txt")
-                    #os.rename("temp.txt","custdata.txt")
+                    os.remove("custdata.txt")
+                    os.rename("temp.txt", "custdata.txt")
                 else:
                     print("Invalid Username")
                     print("*******************************************\n")
@@ -132,7 +137,7 @@ def login():
         print("*******************************************\n")
 
 print("****** WELCOME TO GUVI NETWORK ******")
-a = input("Enter your choice:\nPress 1 for LOGIN \nPress 2 for Registration\n")
+a = input("ENTER YOUR CHOICE:\nPress 1 for LOGIN \nPress 2 for REGISTRATION\n*************************************\n\n")
 print("*************************************")
 if a == "1":
     login()
