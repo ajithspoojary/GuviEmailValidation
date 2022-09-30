@@ -43,7 +43,7 @@ def registration():
                     break
                 elif not re.search("[A-Z]",pwd):
                     break
-                elif not re.search("!#%&'*+,-./:;<=>$?@_`|~",pwd):
+                elif not re.search("[@#$%^&*_+-]",pwd):
                     break
                 elif re.search("\s",pwd):
                     break
@@ -56,9 +56,6 @@ def registration():
                 print("************************************************************************")
                 print("You have entered a invalid password\nEnter a Valid Password with min 5 & max 16 characters\nAnd your passowrd must have atleast 1 digit, 1 uppecase, 1 lowercase & 1 special character\n")
                 print("************************************************************************")
-
-            #if len(pwd) < 5 or len(pwd) > 16:
-            #    print("Password too short or too long")
 
             else:
                 db = open("custdata.txt","a")
