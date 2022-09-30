@@ -8,7 +8,6 @@ def registration():
     for i in sc:
         if i == b[0]:
             flag = 1
-
     d = re.findall("^/d",b)
     if d!=[]:
         flag = 1
@@ -16,7 +15,6 @@ def registration():
     a =re.findall('.+@\.[a-z]',b)
     if a!=[]:
         flag = 1
-
     if flag == 0:
         l = re.findall(".+@.+\.[a-z]",b)
         if l!=[]:
@@ -53,7 +51,7 @@ def registration():
 
             if check:
                 print("************************************************************************")
-                print("You have entered a invalid password\nEnter a Valid Password with min 5 & max 16 characters\nAnd your passowrd must have atleast 1 digit, 1 uppecase, 1 lowercase & 1 special character")
+                print("YOU HAVE ENTERED A INVALID PASSWORD\nEnter a Valid Password with more than 5 & less than 16 characters\nAnd your passowrd must have atleast 1 digit, 1 uppecase, 1 lowercase & 1 special character")
                 print("************************************************************************")
 
             else:
@@ -67,7 +65,7 @@ def registration():
 def login():
     db = open("custdata.txt","r")
     print("*******************************************")
-    b = input("Enter your username\n")
+    b = input("Enter your email\n")
     pwd = input("Enter your password\n")
     m = []
     n = []
@@ -80,19 +78,19 @@ def login():
     if b in data:
         if pwd == data[b]:
             print("*************************************")
-            print("Login Sucessfull")
-            print("WELCOME")
+            print("Login Successfull")
+            print("WELCOME TO GUVI NETWORK")
             print("*************************************")
         else:
             print("*************************************")
-            print("XXXXX    INCORRECT PASSWORD    XXXXX\n\nPress 1 to Retrieve your password\nPress 2 to Change Password\nPress 3 to Register has New User\nPress 4 to Exit\n*************************************\n")
+            print("XXXXX    INCORRECT PASSWORD    XXXXX\n\nForgot Password !!! Then\nPress 1 to Retrieve your password\nPress 2 to Change Password\nPress 3 to Register has New User\nPress 4 to Exit\n*************************************\n")
             p = input()
             if p == "1":
                 b = input("Enter your valid Email id\n")
                 if b in data:
                     print("Your Password is",data[b])
                 else:
-                    print("Invalid Username")
+                    print("Invalid Email")
             elif  p == "2":
                 b = input("Enter your valid Email id\n")
                 if b in data:
@@ -120,7 +118,7 @@ def login():
                                     elif re.search("\s", newpass):
                                         break
                                     else:
-                                        print("Your Password is Valid")
+                                        print("Your Password is Updated")
                                         check = False
                                         break
 
@@ -138,7 +136,7 @@ def login():
                     os.remove("custdata.txt")
                     os.rename("temp.txt", "custdata.txt")
                 else:
-                    print("Invalid Username")
+                    print("Invalid Email")
                     print("*******************************************\n")
             elif p == "3":
                 registration()
@@ -151,7 +149,7 @@ def login():
 
     else:
         print("*******************************************")
-        print("Incorrect Username - Register again")
+        print("Incorrect Email - Register again")
         print("*******************************************\n")
 
 print("****** WELCOME TO GUVI NETWORK ******")
