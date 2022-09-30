@@ -13,14 +13,13 @@ def registration():
     if d!=[]:
         flag = 1
 
-    a =re.findall('.+@\.[a-z]',b)  # .+ accounts for one more character .* accounts for 0 or more characters
+    a =re.findall('.+@\.[a-z]',b)
     if a!=[]:
         flag = 1
 
     if flag == 0:
         l = re.findall(".+@.+\.[a-z]",b)
         if l!=[]:
-            #print("Your email id is valid\n")
             m =[]
             n = []
             for k in db:
@@ -86,7 +85,7 @@ def login():
             print("*************************************")
         else:
             print("*************************************")
-            print("INCORRECT PASSWORD\n\nPress 1 to retrieve your password\nPress 2 to Change Password\nPress 3 to Register has New User\nPress 4 to exit\n*************************************\n")
+            print("XXXXX    INCORRECT PASSWORD    XXXXX\n\nPress 1 to Retrieve your password\nPress 2 to Change Password\nPress 3 to Register has New User\nPress 4 to Exit\n*************************************\n")
             p = input()
             if p == "1":
                 b = input("Enter your valid Email id\n")
@@ -101,12 +100,37 @@ def login():
                     db_w = open("temp.txt", "w")
                     s1 = ' '
                     while (s1):
-                        s1 = db.readline()  # read the first line
+                        s1 = db.readline()
                         l1 = s1.split("~~~")
                         if len(s1) > 0:
                             if l1[0] == b:
                                 newpass = input("Enter your new password\n")
-                                db_w.write(b + "~~~" + newpass + "\n")
+                                check = True
+                                while check:
+                                    if (len(newpass) < 5 or len(newpass) > 16):
+                                        break
+                                    elif not re.search("[a-z]", newpass):
+                                        break
+                                    elif not re.search("[0-9]", newpass):
+                                        break
+                                    elif not re.search("[A-Z]", newpass):
+                                        break
+                                    elif not re.search("[@#$%^&*_+-]", newpass):
+                                        break
+                                    elif re.search("\s", newpass):
+                                        break
+                                    else:
+                                        print("Your Password is Valid")
+                                        check = False
+                                        break
+
+                                if check:
+                                    print("************************************************************************")
+                                    print("XXXXXXXX YOU HAVE ENTERED INVALID PASSWORD XXXXXXXX\n1. Enter a Valid Password with more than 5 & less than 16 characters\n2. And your passowrd must have atleast 1 digit, 1 uppecase, 1 lowercase & 1 special character")
+                                    print("************************************************************************")
+                                    db_w.write(b + "~~~" + data[b] + "\n")
+                                else:
+                                    db_w.write(b + "~~~" + newpass + "\n")
                             else:
                                 db_w.write(s1)
                     db_w.close()
@@ -126,7 +150,8 @@ def login():
 
 
     else:
-        print("Incorrect Username & Register again")
+        print("*******************************************")
+        print("Incorrect Username - Register again")
         print("*******************************************\n")
 
 print("****** WELCOME TO GUVI NETWORK ******")
@@ -136,5 +161,5 @@ if a == "1":
 elif a == "2":
     registration()
 else:
-    print("Press the Valid Number")
+    print("Press the Valid Choice")
     print("*******************************************\n")
