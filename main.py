@@ -54,7 +54,7 @@ def registration():
 
             if check:
                 print("************************************************************************")
-                print("You have entered a invalid password\nEnter a Valid Password with min 5 & max 16 characters\nAnd your passowrd must have atleast 1 digit, 1 uppecase, 1 lowercase & 1 special character\n")
+                print("You have entered a invalid password\nEnter a Valid Password with min 5 & max 16 characters\nAnd your passowrd must have atleast 1 digit, 1 uppecase, 1 lowercase & 1 special character")
                 print("************************************************************************")
 
             else:
@@ -86,7 +86,7 @@ def login():
             print("*************************************")
         else:
             print("*************************************")
-            print("INCORRECT PASSWORD\n\n\nPress 1 to retrieve your password\nPress 2 to Change Password\nPress 3 to Register has New User\nPress 4 to exit\n*************************************\n")
+            print("INCORRECT PASSWORD\n\nPress 1 to retrieve your password\nPress 2 to Change Password\nPress 3 to Register has New User\nPress 4 to exit\n*************************************\n")
             p = input()
             if p == "1":
                 b = input("Enter your valid Email id\n")
@@ -96,23 +96,16 @@ def login():
                     print("Invalid Username")
             elif  p == "2":
                 b = input("Enter your valid Email id\n")
-                print(data)
                 if b in data:
-                    print(b)
-                    print("-----")
-                    print(data)
                     db = open("custdata.txt", "r")
                     db_w = open("temp.txt", "w")
                     s1 = ' '
                     while (s1):
                         s1 = db.readline()  # read the first line
-                        print(s1)
                         l1 = s1.split("~~~")
-                        print(s1)
-                        print(l1[0])
                         if len(s1) > 0:
                             if l1[0] == b:
-                                newpass = input("Enter your new password")
+                                newpass = input("Enter your new password\n")
                                 db_w.write(b + "~~~" + newpass + "\n")
                             else:
                                 db_w.write(s1)
@@ -138,7 +131,6 @@ def login():
 
 print("****** WELCOME TO GUVI NETWORK ******")
 a = input("ENTER YOUR CHOICE:\nPress 1 for LOGIN \nPress 2 for REGISTRATION\n*************************************\n\n")
-print("*************************************")
 if a == "1":
     login()
 elif a == "2":
